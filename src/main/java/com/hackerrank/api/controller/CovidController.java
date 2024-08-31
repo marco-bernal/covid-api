@@ -7,6 +7,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/covid")
 public class CovidController {
@@ -22,6 +24,13 @@ public class CovidController {
   public ResponseEntity<Covid> getCovidById(@PathVariable Long id) {
     return new ResponseEntity<>(this.covidService.getCovidById(id), HttpStatus.OK);
   }
+
+  @GetMapping("/covid/top5?by={by}")
+  @ResponseStatus(HttpStatus.OK)
+  public List<Covid> getCovidById(@RequestParam String by) {
+    return this.covidService.top5By(by);
+  }
+
 
   @PostMapping
   @ResponseStatus(HttpStatus.CREATED)
