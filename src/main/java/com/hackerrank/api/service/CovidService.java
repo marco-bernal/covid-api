@@ -4,6 +4,7 @@ import com.hackerrank.api.model.Covid;
 import com.hackerrank.api.model.Report;
 import java.util.List;
 
+// TODO: Delete me
 public interface CovidService {
 
   List<Covid> getAllCovid();

@@ -10,12 +10,14 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+//TODO: Add comments
 @Slf4j
 @RestController
 @RequestMapping("/covid")
 public class CovidController {
   private final CovidService covidService;
 
+  //TODO: Replace this with lombok
   @Autowired
   public CovidController(CovidService covidService) {
     this.covidService = covidService;

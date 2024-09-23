@@ -22,6 +22,7 @@ import static java.util.stream.Collectors.groupingBy;
 public class DefaultCovidService implements CovidService {
   private final CovidRepository covidRepository;
 
+  //TODO: Inject with lombok instead
   @Autowired
   DefaultCovidService(CovidRepository covidRepository) {
     this.covidRepository = covidRepository;
@@ -32,7 +33,7 @@ public class DefaultCovidService implements CovidService {
     return covidRepository.findAll();
   }
 
-
+  //TODO: Add comments to all public methods
   @Override
   public Covid createNewCovid(Covid covid) {
     if (covid.getId() != null) {
