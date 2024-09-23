@@ -5,17 +5,3 @@ INSERT INTO covid(country, active, death, recovered,continent) VALUES('country4'
 INSERT INTO covid(country, active, death, recovered,continent) VALUES('country5',60, 5,6  ,'eu'  );
 INSERT INTO covid(country, active, death, recovered,continent) VALUES('country6',550, 2,77,'eu'  );
 INSERT INTO covid(country, active, death, recovered,continent) VALUES('country7',670, 4,88,'eu'  );
-
-CREATE OR REPLACE FUNCTION impactFactor(
-    death int,
-    active int,
-    recovered int)
-    RETURNS int as $$
-    DECLARE
-        impact int;
-    BEGIN
-        impact = death/sum(active+death+recovered);
-        RETURN passed;
-    END;
-    $$ LANGUAGE plpgsql;
-)

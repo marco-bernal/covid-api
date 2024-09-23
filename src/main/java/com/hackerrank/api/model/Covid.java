@@ -30,4 +30,5 @@ public class Covid implements Serializable {
   private Integer active;
   private Integer death;
   private Integer recovered;
+
 }

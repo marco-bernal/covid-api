@@ -6,11 +6,18 @@ import com.hackerrank.api.model.Covid;
 import com.hackerrank.api.model.Report;
 import com.hackerrank.api.repository.CovidRepository;
 import com.hackerrank.api.service.CovidService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Example;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
+
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.List;
 
+import static java.util.stream.Collectors.groupingBy;
+
+@Slf4j
 @Service
 public class DefaultCovidService implements CovidService {
   private final CovidRepository covidRepository;
@@ -37,23 +44,53 @@ public class DefaultCovidService implements CovidService {
 
   @Override
   public Covid getCovidById(Long id) {
-    return covidRepository.findById(id).
-            orElseThrow(() -> new ElementNotFoundException("Covid by Id not found:" + id));
+    return covidRepository.findById(id)
+                    .orElseThrow(() -> new ElementNotFoundException("Covid by Id not found:" + id));
   }
 
   @Override
   public List<Covid> top5By(String by) {
-    //return covidRepository.findAll(Example.of())
-    return null;
+    try {
+      Sort sort = Sort.by(Sort.Direction.DESC, by);
+      return covidRepository.findTop5By(sort);
+
+    } catch (Exception e) {
+      throw new BadRequestException("Invalid attribute: " + by);
+    }
   }
 
   @Override
   public Integer totalBy(String by) {
-    return null;
+      return switch (by.toLowerCase()) {
+          case "active" -> covidRepository.findAll().stream().mapToInt(Covid::getActive).sum();
+          case "death" -> covidRepository.findAll().stream().mapToInt(Covid::getDeath).sum();
+          case "recovered" -> covidRepository.findAll().stream().mapToInt(Covid::getRecovered).sum();
+          default -> throw new BadRequestException("Invalid attribute: " + by);
+      };
   }
 
   @Override
   public List<Report> getReport() {
-    return null;
+    List<Covid> covidList = getAllCovid();
+
+    return covidList.stream()
+            .filter(covid -> covid.getContinent() != null && !covid.getContinent().isEmpty())
+            .collect(groupingBy(Covid::getContinent))
+            .entrySet().stream()
+            .map(entry -> {
+                return new Report(entry.getKey(), computeImpactFactor(
+                          entry.getValue().stream().mapToInt(Covid::getDeath).sum(),
+                          entry.getValue().stream().mapToInt(Covid::getActive).sum(),
+                          entry.getValue().stream().mapToInt(Covid::getRecovered).sum())
+                        );
+            })
+            .toList();
+  }
+
+  private Double computeImpactFactor(int death, int active, int recovered) {
+    return BigDecimal.valueOf(death / (active + death + recovered))
+            .setScale(3, RoundingMode.HALF_UP)
+            .doubleValue();
   }
 }
+
