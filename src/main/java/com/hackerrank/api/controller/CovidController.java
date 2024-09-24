@@ -3,63 +3,82 @@ package com.hackerrank.api.controller;
 import com.hackerrank.api.model.Covid;
 import com.hackerrank.api.model.Report;
 import com.hackerrank.api.service.CovidService;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-//TODO: Add comments
 @Slf4j
 @RestController
 @RequestMapping("/covid")
+@RequiredArgsConstructor
 public class CovidController {
+
   private final CovidService covidService;
 
-  //TODO: Replace this with lombok
-  @Autowired
-  public CovidController(CovidService covidService) {
-    this.covidService = covidService;
+  /**
+   * Creates a new Covid entry.
+   *
+   * @param covid object to be created.
+   * @return covid created object.
+   */
+  @PostMapping
+  @ResponseStatus(HttpStatus.CREATED)
+  public Covid createCovid(@RequestBody Covid covid) {
+    log.info("createCovid: {}", covid);
+    return covidService.createNewCovid(covid);
   }
 
+  /**
+   * Gets covid by id.
+   *
+   * @param id id to look for.
+   * @return Covid object with the given id from above.
+   */
   @GetMapping("/byId/{id}")
   @ResponseStatus(HttpStatus.OK)
   public Covid getCovidById(@PathVariable Long id) {
+    log.info("getCovidById: {}", id);
     return covidService.getCovidById(id);
   }
 
   /**
-   * return the top 5 covid entries sorted by given field and status code 200.
+   * Returns the top 5 covid entries sorted by a given field.
    *
-   * @param by  for example: `/covid/top5?by=death` gives total deaths.
-   * @return If `by` is an invalid attribute, return status code 400.
+   * @param by given field to be sorted by.
+   * @return List of top 5 covid objects.
    */
   @GetMapping("/top5")
   @ResponseStatus(HttpStatus.OK)
   public List<Covid> getTop5SortedBy(@RequestParam String by) {
-    log.info("Rest controller getCovidBy: {}", by);
-
-    return this.covidService.top5By(by);
+    log.info("getTop5SortedBy: {}", by);
+    return covidService.top5By(by);
   }
 
+  /**
+   * Returns the total entries by: active, death and recovered.
+   *
+   * @param by filter to be used: active, death and recovered.
+   * @return total sum of entries by a given filter.
+   */
   @GetMapping("/total")
   @ResponseStatus(HttpStatus.OK)
   public Integer getTotalBy(@RequestParam String by) {
     log.info("Rest controller getTotalBy: {}", by);
-    return this.covidService.totalBy(by);
+    return covidService.totalBy(by);
   }
 
-  @GetMapping("/scan/report/scanDashboard")
+  /**
+   * Generates a report, indicating the Impact Factor.
+   *
+   * @return List of Report entries grouped by continent.
+   */
+  @GetMapping("/report")
   @ResponseStatus(HttpStatus.OK)
   public List<Report> getReport() {
     log.info("Getting report!");
-    return this.covidService.getReport();
-  }
-
-  @PostMapping
-  @ResponseStatus(HttpStatus.CREATED)
-  public Covid createCovid(@RequestBody Covid covid) {
-    return covidService.createNewCovid(covid);
+    return covidService.getReport();
   }
 }
