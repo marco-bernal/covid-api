@@ -8,5 +8,11 @@ import java.util.List;
 
 public interface CovidRepository extends JpaRepository<Covid, Long> {
 
+    /**
+     * Finds the top 5 sorted by a given field.
+     *
+     * @param sort sorted by a given field.
+     * @return List of Covid objects.
+     */
     List<Covid> findTop5By(Sort sort);
 }
