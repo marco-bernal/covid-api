@@ -1,0 +1,131 @@
+{
+	"info": {
+		"_postman_id": "43e14a52-b23e-41da-a3fd-cc8e5fa3f759",
+		"name": "Covid API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "38539968"
+	},
+	"item": [
+		{
+			"name": "Create covid object",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"country\":\"contry2\",\n    \"continent\" : \"asia\",\n    \"active\":574,\n    \"death\":45,\n    \"recovered\": 70\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/covid",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"covid"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get by Id",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/covid/byId/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"covid",
+						"byId",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Top5 entries by",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/covid/top5?by=death",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"covid",
+						"top5"
+					],
+					"query": [
+						{
+							"key": "by",
+							"value": "death"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Total by",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/covid/total?by=active",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"covid",
+						"total"
+					],
+					"query": [
+						{
+							"key": "by",
+							"value": "active"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Report",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/covid/report",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"covid",
+						"report"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
