@@ -1,42 +1,45 @@
+## Covid API
+Service that gathers and presents relevant covid related info from (search for a DS on kaggle). 
+
 ## Environment
 - Java version: 23
-- Spring Boot version: 3.2.3
+- Spring Boot version: 3.4.3
 
 ## Data
-Example of a Covid data JSON object:
+Example of a Covid JSON object:
 ```json
 {
-    "id":1,
-    "country":"MyCountry",
-    "continent" : "antarctica",
-    "active":574,
-    "death":45,
-    "recovered": 7000
+    "id" : 1,
+    "country" : "Germany",
+    "continent" : "Europe",
+    "active" : 574,
+    "death" : 45,
+    "recovered" : 7000
 }
 ```
 
-## Requirements
-In this project, data related to covid are provided for many countries. Note that all the data are virtual.
-
-You have to implement `/covid` REST endpoint for following 4 operations.
+## Endpoints
 
 `GET` request to `/covid/byId/{id}`:
-* return the covid entry with given id and status code 200
-* if the requested covid entry doesn't exist, then status code 404 should be returned
+* Returns a `CovidDto` object and status code `200`.
+* If the `id` doesn't exist, returns status code `404`.
 
 `GET` request to `/covid/top5?by={by}`:
-* return the top 5 covid entries sorted by given field and status code 200.
-* for example: `/covid/top5?by=death` gives total deaths
-* if give `by` is invalid attribute, return status code 400
+* Returns the top 5 entries, sorted by a given field `by` and status code `200`.
+* e.g.: `/covid/top5?by=death` retrieves top 5 by death.
+* If the attribute `by` is invalid, returns status code `400`.
 
 `GET` request to `/covid/total?by={by}`:
-* return the total value summed by given field and status code 200
-* for example: `/covid/total?by=active` gives total active cases
-* if give `by` is invalid attribute, return status code 400
+* Returns the total sum by the given field `by` and status code `200`.
+* e.g.: `/covid/total?by=active` retrieves the total active cases.
+* If the attribute `by` is invalid, returns status code `400`.
  
 `GET` request to `/scan/report/scanDashboard`:
-* it needs to generate report like below JSON where it needs to group by `continent` and find the impact factor of each group.
-* status code should be 200 and precision needs to be till 3 decimal places.
+* Generates a report similar to the JSON below. Where it's grouped by `continent` and computes the `impact factor`.
+* Returns a status code `200`. 
+* Excludes entries with `continent` null or empty.
+* Impact Factor formula: ``` impactFactor = death/sum(active+death+recovered) ``` Decimal precision of 3 digits.
+
 
  ```json
 [
@@ -56,22 +59,21 @@ You have to implement `/covid` REST endpoint for following 4 operations.
 ]
 ```
 
-* exclude the entries from calculation which have `continent` null or empty.
-* impactFactor formula is:
-```
-impactFactor(europe) = death/sum(active+death+recovered)
-```
+## ToDo
+* Switch from H2 to Flyway.
+* Add mapstruct support.
+* Create DTOs.
 
-## Commands
-- run: 
-```bash
-mvn clean spring-boot:run
-```
-- install: 
-```bash
-mvn clean install
-```
-- test: 
-```bash
-mvn clean test
-```
+
+* Create meta annotation for IT.
+* Add test containers support for DB IT.
+* Create IT for Repo, Service and Controller Layers.
+* Set up / configure Jacoco for code coverage (100%).
+
+ 
+* Document the API (swagger or open API).
+* Add docker support.
+* Add GitHub actions.
+
+
+* Add proper health monitoring w/ Prometheus and Grafana.

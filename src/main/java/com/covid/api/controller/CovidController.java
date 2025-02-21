@@ -12,8 +12,8 @@ import java.util.List;
 
 @Slf4j
 @RestController
-@RequestMapping("/covid")
 @RequiredArgsConstructor
+@RequestMapping("/covid")
 public class CovidController {
 
   private final CovidService covidService;

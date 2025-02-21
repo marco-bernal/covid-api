@@ -1,6 +1,5 @@
 package com.covid.api.model;
 
-//import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -11,9 +10,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import java.io.Serializable;
 
-//TODO: Add Dto for the view, and mappings to convert from/to.
 @Entity
 @Getter
 @Setter
@@ -21,8 +18,7 @@ import java.io.Serializable;
 @ToString
 @NoArgsConstructor
 @AllArgsConstructor
-//@JsonIgnoreProperties(ignoreUnknown = true)
-public class Covid implements Serializable {
+public class Covid {
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long id;
