@@ -60,20 +60,21 @@ Example of a Covid JSON object:
 ```
 
 ## ToDo
+DB
 * Switch from H2 to Flyway.
 * Add mapstruct support.
 * Create DTOs.
 
-
+Tests
 * Create meta annotation for IT.
 * Add test containers support for DB IT.
 * Create IT for Repo, Service and Controller Layers.
 * Set up / configure Jacoco for code coverage (100%).
 
- 
+ DevOps
 * Document the API (swagger or open API).
-* Add docker support.
+* Add docker/docker-compose support.
 * Add GitHub actions.
 
-
+SRE
 * Add proper health monitoring w/ Prometheus and Grafana.
