@@ -1,6 +1,5 @@
 ## Environment
-- Java version: 17
-- Maven version: 3.*
+- Java version: 23
 - Spring Boot version: 3.2.3
 
 ## Data
