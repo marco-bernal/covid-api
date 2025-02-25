@@ -6,19 +6,23 @@ Service that gathers and presents relevant covid related info from (search for a
 - Spring Boot version: 3.4.3
 
 ## Data
-Example of a Covid JSON object:
+Example of a CovidDto JSON object:
 ```json
 {
-    "id" : 1,
-    "country" : "Germany",
-    "continent" : "Europe",
-    "active" : 574,
-    "death" : 45,
-    "recovered" : 7000
+  "country" : "Germany",
+  "continent" : "Europe",
+  "confirmed" : 7935,
+  "death" : 45,
+  "recovered" : 7000,  
+  "active" : 574
 }
 ```
 
 ## Endpoints
+
+`POST` request to `/covid/`:
+* RequestBody `CovidDto` object.
+* Returns a `CovidDto` object and status code `201`.
 
 `GET` request to `/covid/byId/{id}`:
 * Returns a `CovidDto` object and status code `200`.
@@ -60,11 +64,6 @@ Example of a Covid JSON object:
 ```
 
 ## ToDo
-DB
-* Switch from H2 to Flyway.
-* Add mapstruct support.
-* Create DTOs.
-
 Tests
 * Create meta annotation for IT.
 * Add test containers support for DB IT.
