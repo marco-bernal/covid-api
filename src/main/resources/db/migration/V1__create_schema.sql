@@ -4,7 +4,7 @@ CREATE TABLE public.covid
 (
     id SERIAL NOT NULL,
     country character varying(70) NOT NULL UNIQUE,
-    continent character varying(50) NOT NULL UNIQUE,
+    continent character varying(50) NOT NULL,
     confirmed integer NOT NULL,
     death integer NOT NULL,
     recovered integer NOT NULL,

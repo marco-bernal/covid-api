@@ -3,6 +3,8 @@ package com.covid.api.service;
 import com.covid.api.exception.BadRequestException;
 import com.covid.api.exception.ElementNotFoundException;
 import com.covid.api.model.Covid;
+import com.covid.api.model.CovidDto;
+import com.covid.api.model.CovidMapper;
 import com.covid.api.model.Report;
 import com.covid.api.repository.CovidRepository;
 import lombok.RequiredArgsConstructor;
@@ -21,19 +23,23 @@ import static java.util.stream.Collectors.groupingBy;
 @RequiredArgsConstructor
 public class CovidService {
 
-  private final CovidRepository covidRepository;
+    private final CovidMapper covidMapper;
+    private final CovidRepository covidRepository;
 
     /**
      * Creates a new Covid entry.
      *
-     * @param covid object to be created.
+     * @param covidDto object to be created.
      * @return covid created object.
      */
-  public Covid createNewCovid(Covid covid) {
-    if (covid.getId() != null) {
-      throw new BadRequestException("The ID must not be provided when creating a new Scan");
-    }
-    return covidRepository.save(covid);
+  public CovidDto createNewCovid(CovidDto covidDto) {
+    Covid newCovidEntry = covidMapper.toCovid(covidDto);
+    log.info("After mapstruct: {}", newCovidEntry);
+
+    newCovidEntry = covidRepository.save(newCovidEntry);
+    log.info("After saving: {}", newCovidEntry);
+
+    return covidMapper.toCovidDto(newCovidEntry);
   }
 
     /**
@@ -42,9 +48,9 @@ public class CovidService {
      * @param id id to look for.
      * @return Covid object with the given id from above.
      */
-  public Covid getCovidById(Long id) {
-    return covidRepository.findById(id)
-                    .orElseThrow(() -> new ElementNotFoundException("Covid by Id not found:" + id));
+  public CovidDto getCovidById(Long id) {
+    return covidMapper.toCovidDto(covidRepository.findById(id)
+            .orElseThrow(() -> new ElementNotFoundException("Covid by Id not found:" + id)));
   }
 
     /**
@@ -53,10 +59,10 @@ public class CovidService {
      * @param by given field to be sorted by.
      * @return List of top 5 covid objects.
      */
-  public List<Covid> top5By(String by) {
+  public List<CovidDto> top5By(String by) {
     try {
       Sort sort = Sort.by(Sort.Direction.DESC, by);
-      return covidRepository.findTop5By(sort);
+      return covidMapper.toCovidDtoList(covidRepository.findTop5By(sort));
     } catch (Exception e) {
       throw new BadRequestException("Invalid attribute: " + by);
     }

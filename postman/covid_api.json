@@ -13,7 +13,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"country\":\"contry2\",\n    \"continent\" : \"asia\",\n    \"active\":574,\n    \"death\":45,\n    \"recovered\": 70\n}",
+					"raw": "{\n    \"country\" : \"Brazil\",\n    \"continent\" : \"America\",\n    \"confirmed\" : 5423,\n    \"death\" : 459,\n    \"recovered\" : 706,\n    \"active\" : 3574\n}",
 					"options": {
 						"raw": {
 							"language": "json"

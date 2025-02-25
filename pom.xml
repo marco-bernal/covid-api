@@ -20,9 +20,11 @@
         <java.version>23</java.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <!-- DB -->
-        <mapstruct.version>1.6.3</mapstruct.version>
         <postgres.version>42.7.5</postgres.version>
         <flyway.version>11.3.1</flyway.version>
+        <!-- Misc-->
+        <mapstruct.version>1.6.3</mapstruct.version>
+        <lombok-mapstruct-binding.version>0.2.0</lombok-mapstruct-binding.version>
         <!-- Maven -->
         <mvn.compiler.version>3.13.0</mvn.compiler.version>
     </properties>
@@ -68,13 +70,14 @@
             <version>${flyway.version}</version>
         </dependency>
 
+        <!-- Misc -->
         <dependency>
             <groupId>org.mapstruct</groupId>
             <artifactId>mapstruct</artifactId>
             <version>${mapstruct.version}</version>
         </dependency>
 
-        <!-- Misc -->
+
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
@@ -90,6 +93,7 @@
             </plugin>
 
             <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>${mvn.compiler.version}</version>
                 <configuration>
@@ -105,6 +109,11 @@
                             <groupId>org.projectlombok</groupId>
                             <artifactId>lombok</artifactId>
                             <version>${lombok.version}</version>
+                        </path>
+                        <path>
+                            <groupId>org.projectlombok</groupId>
+                            <artifactId>lombok-mapstruct-binding</artifactId>
+                            <version>${lombok-mapstruct-binding.version}</version>
                         </path>
                     </annotationProcessorPaths>
                 </configuration>
