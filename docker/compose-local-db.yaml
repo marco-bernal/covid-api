@@ -1,0 +1,9 @@
+services:
+  covid-db:
+    image: postgres
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_DB: "covid"
+      POSTGRES_PASSWORD: "postgres"
+      POSTGRES_USER: "postgres"

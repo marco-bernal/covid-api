@@ -1,6 +1,6 @@
 package com.covid.api.controller;
 
-import com.covid.api.model.Covid;
+import com.covid.api.model.CovidDto;
 import com.covid.api.model.Report;
 import com.covid.api.service.CovidService;
 import lombok.RequiredArgsConstructor;
@@ -21,14 +21,14 @@ public class CovidController {
   /**
    * Creates a new Covid entry.
    *
-   * @param covid object to be created.
+   * @param covidDto object to be created.
    * @return covid created object.
    */
   @PostMapping
   @ResponseStatus(HttpStatus.CREATED)
-  public Covid createCovid(@RequestBody Covid covid) {
-    log.info("createCovid: {}", covid);
-    return covidService.createNewCovid(covid);
+  public CovidDto createCovidEntry(@RequestBody CovidDto covidDto) {
+    log.info("createCovid: {}", covidDto);
+    return covidService.createNewCovid(covidDto);
   }
 
   /**
@@ -39,7 +39,7 @@ public class CovidController {
    */
   @GetMapping("/byId/{id}")
   @ResponseStatus(HttpStatus.OK)
-  public Covid getCovidById(@PathVariable Long id) {
+  public CovidDto getCovidById(@PathVariable Long id) {
     log.info("getCovidById: {}", id);
     return covidService.getCovidById(id);
   }
@@ -52,7 +52,7 @@ public class CovidController {
    */
   @GetMapping("/top5")
   @ResponseStatus(HttpStatus.OK)
-  public List<Covid> getTop5SortedBy(@RequestParam String by) {
+  public List<CovidDto> getTop5SortedBy(@RequestParam String by) {
     log.info("getTop5SortedBy: {}", by);
     return covidService.top5By(by);
   }
