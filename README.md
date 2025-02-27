@@ -1,5 +1,5 @@
 ## Covid API
-Service that gathers and presents relevant covid related info from (search for a DS on kaggle). 
+Service that gathers and presents illustrative covid related info. 
 
 ## Environment
 - Java version: 23
@@ -70,10 +70,14 @@ Tests
 * Create IT for Repo, Service and Controller Layers.
 * Set up / configure Jacoco for code coverage (100%).
 
- DevOps
 * Document the API (swagger or open API).
-* Add docker/docker-compose support.
+
+DevOps
+* Add dockerfile and docker-compose for service and db.
 * Add GitHub actions.
 
 SRE
-* Add proper health monitoring w/ Prometheus and Grafana.
+* Add proper health monitoring: Prometheus and Grafana in a compose file.
+
+Security
+* TBD
