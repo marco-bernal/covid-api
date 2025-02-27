@@ -65,7 +65,7 @@ Example of a CovidDto JSON object:
 
 ## ToDo
 Client
-* Add a API call to another service using the RestClient (Spring 6.1).
+* Add an API call to another service using the RestClient (Spring 6.1).
 
 ```java
 
@@ -86,10 +86,12 @@ Client
         .body(CovidDto.class);
 
 ```
+* Check https://www.youtube.com/watch?v=jhhi03AIin4 for adding tests to rest clients.
+
 
 Tests
-* Add UT & IT.
-* Set up / configure Jacoco for code coverage (100%).
+* Set up / configure Jacoco.
+* Add UT & IT for code coverage (100%).
 * Document the API (swagger or open API).
 
 DevOps
