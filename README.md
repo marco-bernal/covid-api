@@ -64,12 +64,32 @@ Example of a CovidDto JSON object:
 ```
 
 ## ToDo
-Tests
-* Create meta annotation for IT.
-* Add test containers support for DB IT.
-* Create IT for Repo, Service and Controller Layers.
-* Set up / configure Jacoco for code coverage (100%).
+Client
+* Add a API call to another service using the RestClient (Spring 6.1).
 
+```java
+
+    private static RestClient restClient;
+
+    @BeforeAll
+    static void setUp() {
+        restClient = RestClient.builder()
+                .baseUrl("http://localhost:8080")
+                .build();
+    }
+
+
+    CovidDto result = restClient.get()
+        .uri("/api/covid/{id}", id)
+        .accept(MediaType.APPLICATION_JSON)
+        .retrieve()
+        .body(CovidDto.class);
+
+```
+
+Tests
+* Add UT & IT.
+* Set up / configure Jacoco for code coverage (100%).
 * Document the API (swagger or open API).
 
 DevOps
