@@ -1,0 +1,5 @@
+# db/data is used for Integration Tests right now. Might consider to create a different folder db/it_data for IT
+# and use db/data for local debugging/testing.
+spring:
+  flyway:
+    locations: ['classpath:db/migration', 'classpath:db/data']

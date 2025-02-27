@@ -34,10 +34,9 @@ public class CovidService {
      */
   public CovidDto createNewCovid(CovidDto covidDto) {
     Covid newCovidEntry = covidMapper.toCovid(covidDto);
-    log.info("After mapstruct: {}", newCovidEntry);
 
     newCovidEntry = covidRepository.save(newCovidEntry);
-    log.info("After saving: {}", newCovidEntry);
+    log.debug("Covid entry after saving: {}", newCovidEntry);
 
     return covidMapper.toCovidDto(newCovidEntry);
   }

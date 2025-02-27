@@ -10,10 +10,11 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+//TODO; Add controller advice and return exception's root cause as an Error object.
 @Slf4j
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/covid")
+@RequestMapping("/api/covid")
 public class CovidController {
 
   private final CovidService covidService;

@@ -13,7 +13,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"country\" : \"Brazil\",\n    \"continent\" : \"America\",\n    \"confirmed\" : 5423,\n    \"death\" : 459,\n    \"recovered\" : 706,\n    \"active\" : 3574\n}",
+					"raw": "{\n    \"country\" : \"Chile\",\n    \"continent\" : \"America\",\n    \"confirmed\" : 89236,\n    \"death\" : 1908,\n    \"recovered\" : 35464,\n    \"active\" : 25435\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -21,13 +21,14 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:8080/covid",
+					"raw": "http://localhost:8080/api/covid",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
 					"port": "8080",
 					"path": [
+						"api",
 						"covid"
 					]
 				}
@@ -40,13 +41,14 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:8080/covid/byId/1",
+					"raw": "http://localhost:8080/api/covid/byId/1",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
 					"port": "8080",
 					"path": [
+						"api",
 						"covid",
 						"byId",
 						"1"
@@ -61,13 +63,14 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:8080/covid/top5?by=death",
+					"raw": "http://localhost:8080/api/covid/top5?by=death",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
 					"port": "8080",
 					"path": [
+						"api",
 						"covid",
 						"top5"
 					],
@@ -87,13 +90,14 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:8080/covid/total?by=active",
+					"raw": "http://localhost:8080/api/covid/total?by=active",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
 					"port": "8080",
 					"path": [
+						"api",
 						"covid",
 						"total"
 					],
@@ -113,13 +117,14 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:8080/covid/report",
+					"raw": "http://localhost:8080/api/covid/report",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
 					"port": "8080",
 					"path": [
+						"api",
 						"covid",
 						"report"
 					]
