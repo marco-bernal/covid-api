@@ -1,7 +1,16 @@
+-- Continents: Africa, Europe, Asia, America, Oceania, Antarctica.
+
 -- Initial test data
 INSERT INTO public.covid
 (country, continent, confirmed, death, recovered, active, created_at)
 VALUES
-('Argentina', 'America', 1600710, 30847, 8553, 75356, CURRENT_TIMESTAMP)
-
--- Africa, Europe, Asia, America, Oceania, Antarctica
+('Argentina', 'America', 1600710, 30847, 8553, 75356, CURRENT_TIMESTAMP),
+('Congo', 'Africa', 5600710, 430847, 58553, 3575356, CURRENT_TIMESTAMP),
+('China', 'Asia', 10600710, 1030847, 568553, 7475356, CURRENT_TIMESTAMP),
+('India', 'Asia', 6600710, 130847, 58553, 4375356, CURRENT_TIMESTAMP),
+('Russia', 'Europe', 3600710, 730847, 1183553, 1475356, CURRENT_TIMESTAMP),
+('Nigeria', 'Africa', 9600710, 2430847, 4338553, 2437536, CURRENT_TIMESTAMP),
+('Iran', 'Asia', 2800710, 630847, 238553, 2135356, CURRENT_TIMESTAMP),
+('USA', 'America', 15600710, 3563087, 2385533, 9997536, CURRENT_TIMESTAMP),
+('Italy', 'Europe', 2500710, 1230847, 543853, 1875356, CURRENT_TIMESTAMP),
+('France', 'Europe', 2100370, 703084, 438553, 1075356, CURRENT_TIMESTAMP)
